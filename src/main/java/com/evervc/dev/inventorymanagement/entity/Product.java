@@ -34,5 +34,5 @@ public class Product {
     private Integer stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Categroy categroy;
+    private Category categroy;
 }

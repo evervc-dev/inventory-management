@@ -10,7 +10,7 @@ import java.util.List;
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Categroy {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
