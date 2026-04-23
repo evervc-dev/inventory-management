@@ -1,5 +1,6 @@
 package com.evervc.dev.inventorymanagement.entity;
 
+import com.evervc.dev.inventorymanagement.entity.utils.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,8 +10,8 @@ import java.util.List;
 @Table(name = "categories")
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Category {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+public class Category extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

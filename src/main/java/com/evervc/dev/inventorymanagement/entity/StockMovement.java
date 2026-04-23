@@ -1,6 +1,7 @@
 package com.evervc.dev.inventorymanagement.entity;
 
 import com.evervc.dev.inventorymanagement.entity.enums.MovementType;
+import com.evervc.dev.inventorymanagement.entity.utils.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,8 +11,8 @@ import java.util.List;
 @Table(name = "stock_movements")
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class StockMovement {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+public class StockMovement extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

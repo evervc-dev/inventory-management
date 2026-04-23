@@ -1,5 +1,6 @@
 package com.evervc.dev.inventorymanagement.entity;
 
+import com.evervc.dev.inventorymanagement.entity.utils.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,8 +8,8 @@ import lombok.*;
 @Table(name = "roles")
 @Setter @Getter
 @NoArgsConstructor @AllArgsConstructor
-@EqualsAndHashCode
-public class Role {
+@EqualsAndHashCode(callSuper = false)
+public class Role extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
