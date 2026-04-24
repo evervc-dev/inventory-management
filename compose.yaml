@@ -1,9 +1,15 @@
 services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
-    ports:
-      - '5432'
+  db:
+      image: postgres
+      container_name: my_postgres
+      restart: always
+      environment:
+          # Nombre de la db
+          - POSTGRES_DB=inventory
+          # Si se tiene un usuario diferente de postgres
+          #- POSTGRES_USER=mi_usuario
+          - POSTGRES_PASSWORD=${DB_PWD}
+      volumes:
+        -   ./postgres_data:/var/lib/postgresql/data
+      ports:
+          - '5433:5432'
