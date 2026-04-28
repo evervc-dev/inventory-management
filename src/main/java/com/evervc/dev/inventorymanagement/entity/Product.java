@@ -35,5 +35,5 @@ public class Product extends Auditable {
     private Integer stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Category categroy;
+    private Category category;
 }
