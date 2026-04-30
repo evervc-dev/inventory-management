@@ -1,6 +1,5 @@
 package com.evervc.dev.inventorymanagement.service;
 
-import com.evervc.dev.inventorymanagement.exception.UserNotFoundException;
 import com.evervc.dev.inventorymanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +15,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByEmail(username).orElseThrow(() -> new UserNotFoundException("El usuario con correo " + username + " no existe"));
+        return userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("El usuario con correo " + username + " no existe"));
     }
 }
