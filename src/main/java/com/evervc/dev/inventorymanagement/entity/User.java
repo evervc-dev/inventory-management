@@ -13,8 +13,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Setter @Getter
-@NoArgsConstructor @AllArgsConstructor @Builder
+@Setter @Getter @Builder
+@NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class User extends Auditable implements UserDetails {
 

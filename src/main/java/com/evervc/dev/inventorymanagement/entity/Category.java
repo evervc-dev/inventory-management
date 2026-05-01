@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "categories")
-@Setter @Getter
+@Setter @Getter @Builder
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class Category extends Auditable {

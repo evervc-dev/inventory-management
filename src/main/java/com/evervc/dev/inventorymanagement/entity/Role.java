@@ -6,7 +6,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "roles")
-@Setter @Getter
+@Setter @Getter @Builder
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Role extends Auditable {

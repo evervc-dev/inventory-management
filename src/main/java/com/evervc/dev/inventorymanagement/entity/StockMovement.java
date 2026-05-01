@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "stock_movements")
-@Setter @Getter
+@Setter @Getter @Builder
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class StockMovement extends Auditable {
