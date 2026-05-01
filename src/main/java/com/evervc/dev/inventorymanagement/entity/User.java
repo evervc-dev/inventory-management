@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Setter @Getter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class User extends Auditable implements UserDetails {
 
