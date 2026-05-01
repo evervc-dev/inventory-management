@@ -3,6 +3,7 @@ package com.evervc.dev.inventorymanagement.handler;
 import com.evervc.dev.inventorymanagement.dto.ErrorDto;
 import com.evervc.dev.inventorymanagement.exception.BusinessRuleException;
 import com.evervc.dev.inventorymanagement.exception.ResourceNotFoundException;
+import com.evervc.dev.inventorymanagement.exception.TokenInvalidException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -86,6 +87,21 @@ public class GlobalExceptionHandler{
         );
 
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    // Credenciales incorrectas (HTTP 400 - Bad Request)
+    @ExceptionHandler(TokenInvalidException.class)
+    public ResponseEntity<ErrorDto> invalidTokenHandler(TokenInvalidException ex, HttpServletRequest request) {
+        ErrorDto response = new ErrorDto(
+                LocalDateTime.now(),
+                HttpServletResponse.SC_UNAUTHORIZED,
+                "Unauthorized",
+                ex.getMessage(),
+                null,
+                request.getRequestURI()
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     // Credenciales incorrectas (HTTP 400 - Bad Request)
