@@ -4,7 +4,7 @@ import com.evervc.dev.inventorymanagement.validation.EmailRegex;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public record UserRequestDto(
         @NotBlank(message = "El campo de nombre es obligatorio.")
@@ -16,7 +16,7 @@ public record UserRequestDto(
         String address,
 
         // Tarea: Crear una validación personalizada para el formato
-        LocalDateTime birthDate,
+        LocalDate birthDate,
 
         @NotBlank(message = "El campo de email es obligatorio.")
         @Min(value = 10, message = "El correo debe tener una extensión mínima de 10 caracteres")
