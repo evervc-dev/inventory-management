@@ -18,6 +18,7 @@ public class Category extends Auditable {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String name;
 
     private String description;
