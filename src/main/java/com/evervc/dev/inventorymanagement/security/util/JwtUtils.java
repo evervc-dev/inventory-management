@@ -26,8 +26,13 @@ public class JwtUtils {
     @Value("${application.security.jwt.refresh-tolen.expiration}")
     private Long refreshExpiration;
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateRefreshToken(UserDetails userDetails) {
+        return Jwts.builder()
+                .subject(userDetails.getUsername())
+                .expiration(new Date(System.currentTimeMillis() + refreshExpiration))
+                .issuedAt(new Date())
+                .signWith(getSigningKey())
+                .compact();
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
