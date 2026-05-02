@@ -12,7 +12,7 @@ public interface ProductService {
 
     BaseResponseDto findById(long id);
 
-    BaseResponseDto save(ProductRequestDto productDto);
+    BaseResponseDto create(ProductRequestDto productDto);
 
     void remove(long id);
 }

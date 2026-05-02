@@ -76,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public BaseResponseDto save(ProductRequestDto productDto) {
+    public BaseResponseDto create(ProductRequestDto productDto) {
         Category category = getCategory(productDto.categoryId());
 
         if (productRepository.existsBySku(productDto.sku()))
