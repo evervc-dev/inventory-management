@@ -14,6 +14,7 @@ public class ProductMapper {
                 .description(dto.description())
                 .price(dto.price())
                 .stock(dto.stock())
+                .active(true)
                 .build();
     }
 
