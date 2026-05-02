@@ -10,6 +10,7 @@ public record FullProductResponseDto(
         String description,
         BigDecimal price,
         Integer stock,
+        Boolean active,
         CategoryResponseDto category
 ) {
 }

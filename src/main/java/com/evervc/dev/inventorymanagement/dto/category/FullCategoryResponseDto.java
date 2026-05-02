@@ -8,5 +8,6 @@ public record FullCategoryResponseDto(
         Long id,
         String name,
         String description,
+        Boolean active,
         List<ProductResponseDto> products
 ) {}
