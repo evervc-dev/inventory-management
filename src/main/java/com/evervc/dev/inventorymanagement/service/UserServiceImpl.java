@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
 
+    @Transactional(readOnly = true)
     @Override
     public BaseResponseDto findAll(Pageable pageable) {
         Page<User> users = userRepository.findByEnabledTrue(pageable);

@@ -23,7 +23,8 @@ public class ProductMapper {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
-                product.getStock()
+                product.getStock(),
+                product.getActive()
         );
     }
 
@@ -34,6 +35,7 @@ public class ProductMapper {
                 product.getDescription(),
                 product.getPrice(),
                 product.getStock(),
+                product.getActive(),
                 CategoryMapper.toSimpleDto(product.getCategory())
         );
     }
