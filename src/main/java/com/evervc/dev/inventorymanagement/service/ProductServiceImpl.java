@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public BaseResponseDto findAll(Pageable pageable) {
         // Retorna solo los productos con Stock mayor a 0 (es decir, de 1 en adelante)
-        Page<Product> products = productRepository.findAllByStockAfter(0, pageable);
+        Page<Product> products = productRepository.findAllByStockAfterAndActiveTrue(0, pageable);
 
         Page<FullProductResponseDto> productsPage = products.map(ProductMapper::toFullDto);
 
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     public BaseResponseDto findAllByCategoryId(long categoryId, Pageable pageable) {
         Category category = getCategory(categoryId);
 
-        Page<Product> products = productRepository.findAllByCategory(category, pageable);
+        Page<Product> products = productRepository.findAllByCategoryAndActiveTrue(category, pageable);
 
         Page<FullProductResponseDto> productsPage = products.map(ProductMapper::toFullDto);
 
@@ -104,13 +104,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Category getCategory(long id) {
-        return categoryRepository.findById(id).orElseThrow(
+        return categoryRepository.findByIdAndActiveTrue(id).orElseThrow(
                 () -> new ResourceNotFoundException("La categoria con ID [" + id + "] no existe.")
         );
     }
 
     private Product getProduct(long id) {
-        return productRepository.findById(id).orElseThrow(
+        return productRepository.findByIdAndActiveTrue(id).orElseThrow(
                 () -> new ResourceNotFoundException("El producto con ID [" + id + "] no existe.")
         );
     }
