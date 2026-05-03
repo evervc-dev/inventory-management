@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                product
+                ProductMapper.toFullDto(product)
         );
     }
 
