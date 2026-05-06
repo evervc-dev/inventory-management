@@ -44,7 +44,7 @@ public class User extends Auditable implements UserDetails {
     @Column(nullable = false)
     private Boolean enabled;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
