@@ -18,6 +18,7 @@ public record ProductRequestDto(
         String description,
 
         @NotNull(message = "El campo de precio es obligatorio.")
+        @Positive(message = "EL precio debe ser mayor a 0.")
         BigDecimal price,
 
         @NotNull(message = "El campo de stock es obligatorio.")
