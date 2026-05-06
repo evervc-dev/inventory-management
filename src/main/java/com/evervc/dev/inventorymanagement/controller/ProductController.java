@@ -44,4 +44,10 @@ public class ProductController {
     ) {
         return new ResponseEntity<>(productService.findAllByCategoryId(category, PageRequest.of(page, size)), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BaseResponseDto> deleteProduct(@PathVariable long id) {
+        productService.remove(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
