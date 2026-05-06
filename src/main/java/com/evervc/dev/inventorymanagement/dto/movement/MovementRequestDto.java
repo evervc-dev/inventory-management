@@ -5,9 +5,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record MovementRequestDto(
+        @NotNull(message = "La fecha es requerida")
+        LocalDate date,
+
         @NotNull(message = "Debe indicar al menos un ID de producto para realizar un movimiento.")
         List<Long> productsIds,
 

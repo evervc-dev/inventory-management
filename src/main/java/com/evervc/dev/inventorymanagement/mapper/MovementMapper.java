@@ -12,6 +12,7 @@ public class MovementMapper {
 
     public static StockMovement toEntity(MovementRequestDto dto) {
         return StockMovement.builder()
+                .date(dto.date())
                 .type(MovementType.valueOf(dto.movementType()))
                 .build();
     }
@@ -21,6 +22,7 @@ public class MovementMapper {
                 .stream().map(ProductMapper::toFullDto).toList();
         return new MovementResponseDto(
                 movement.getId(),
+                movement.getDate(),
                 products,
                 UserMapper.toDto(movement.getUser()),
                 movement.getType()

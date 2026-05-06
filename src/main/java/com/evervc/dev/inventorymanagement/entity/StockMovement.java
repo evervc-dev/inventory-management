@@ -5,6 +5,7 @@ import com.evervc.dev.inventorymanagement.entity.utils.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,9 @@ public class StockMovement extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+
+    @Column(nullable = false)
+    private LocalDate date;
 
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Product> products;
