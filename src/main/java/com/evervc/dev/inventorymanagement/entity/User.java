@@ -32,7 +32,7 @@ public class User extends Auditable implements UserDetails {
     @Column(length = 150)
     private String address;
 
-    private LocalDate birthDate;
+    private LocalDate birthday;
 
     @Column(unique = true, nullable = false, length = 100)
     @EqualsAndHashCode.Include
