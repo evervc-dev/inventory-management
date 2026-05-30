@@ -3,6 +3,7 @@ package com.evervc.dev.inventorymanagement.service;
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.FullProductResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductPatchDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductUpdateDto;
 import com.evervc.dev.inventorymanagement.entity.Category;
 import com.evervc.dev.inventorymanagement.entity.Product;
@@ -99,9 +100,9 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Override
     public BaseResponseDto replace(ProductUpdateDto productDto, Long id) {
-        Category category = getCategory(productDto.categoryId());
-
         Product product = getProduct(id);
+
+        Category category = getCategory(productDto.categoryId());
 
         product.setName(productDto.name());
         product.setDescription(productDto.description());
@@ -109,6 +110,47 @@ public class ProductServiceImpl implements ProductService {
         product.setStock(productDto.stock());
         product.setActive(productDto.active());
         product.setCategory(category);
+
+        Product productUpdated = productRepository.save(product);
+
+        return new BaseResponseDto(
+                LocalDateTime.now(),
+                HttpServletResponse.SC_OK,
+                httpServletRequest.getRequestURI(),
+                ProductMapper.toFullDto(productUpdated)
+        );
+    }
+
+    @Override
+    public BaseResponseDto update(ProductPatchDto productDto, Long id) {
+        Product product = getProduct(id);
+
+        // Verifica si hay cambios en los valores y actualiza esos cambios en el objeto de producto
+        if (productDto.name() != null) {
+            product.setName(productDto.name());
+        }
+
+        if (productDto.description() != null) {
+            product.setDescription(productDto.description());
+        }
+
+        if (productDto.price() != null) {
+            product.setPrice(productDto.price());
+        }
+
+        if (productDto.stock() != null) {
+            product.setStock(productDto.stock());
+        }
+
+        if (productDto.active() != null) {
+            product.setActive(productDto.active());
+        }
+
+        if (productDto.categoryId() != null) {
+            Category category = getCategory(productDto.categoryId());
+
+            product.setCategory(category);
+        }
 
         Product productUpdated = productRepository.save(product);
 

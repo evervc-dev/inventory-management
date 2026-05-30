@@ -2,6 +2,7 @@ package com.evervc.dev.inventorymanagement.controller;
 
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductPatchDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductUpdateDto;
 import com.evervc.dev.inventorymanagement.service.ProductService;
 import jakarta.validation.Valid;
@@ -41,13 +42,20 @@ public class ProductController {
         return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<BaseResponseDto> replaceProduct(
             @PathVariable Long id,
             @Valid @RequestBody ProductUpdateDto productDto
             ) {
         return new ResponseEntity<>(productService.replace(productDto, id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<BaseResponseDto> updateProduct(
+            @PathVariable Long id,
+            @Valid @RequestBody ProductPatchDto productDto
+            ) {
+        return new ResponseEntity<>(productService.update(productDto, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
