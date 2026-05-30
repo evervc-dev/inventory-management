@@ -17,14 +17,8 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @PostMapping
-    public ResponseEntity<BaseResponseDto> addProduct(
-            @Valid @RequestBody ProductCreateDto productDto) {
-        return new ResponseEntity<>(productService.create(productDto), HttpStatus.CREATED);
-    }
-
     @GetMapping
-    public ResponseEntity<BaseResponseDto> getAllProducts(
+    public ResponseEntity<BaseResponseDto> getProducts(
             @RequestParam(required = false) Long category_id,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
@@ -33,6 +27,12 @@ public class ProductController {
             return new ResponseEntity<>(productService.findAllByCategoryId(category_id, PageRequest.of(page, size)), HttpStatus.OK);
         }
         return new ResponseEntity<>(productService.findAll(PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<BaseResponseDto> createProduct(
+            @Valid @RequestBody ProductCreateDto productDto) {
+        return new ResponseEntity<>(productService.create(productDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
