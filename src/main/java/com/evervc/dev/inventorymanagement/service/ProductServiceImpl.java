@@ -2,7 +2,7 @@ package com.evervc.dev.inventorymanagement.service;
 
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.FullProductResponseDto;
-import com.evervc.dev.inventorymanagement.dto.product.ProductRequestDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
 import com.evervc.dev.inventorymanagement.entity.Category;
 import com.evervc.dev.inventorymanagement.entity.Product;
 import com.evervc.dev.inventorymanagement.exception.BusinessRuleException;
@@ -76,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public BaseResponseDto create(ProductRequestDto productDto) {
+    public BaseResponseDto create(ProductCreateDto productDto) {
         Category category = getCategory(productDto.categoryId());
 
         if (productRepository.existsBySku(productDto.sku()))

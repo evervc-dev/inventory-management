@@ -1,7 +1,7 @@
 package com.evervc.dev.inventorymanagement.service;
 
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
-import com.evervc.dev.inventorymanagement.dto.product.ProductRequestDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
 import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
@@ -12,7 +12,7 @@ public interface ProductService {
 
     BaseResponseDto findById(long id);
 
-    BaseResponseDto create(ProductRequestDto productDto);
+    BaseResponseDto create(ProductCreateDto productDto);
 
     void remove(long id);
 }

@@ -1,13 +1,13 @@
 package com.evervc.dev.inventorymanagement.mapper;
 
 import com.evervc.dev.inventorymanagement.dto.product.FullProductResponseDto;
-import com.evervc.dev.inventorymanagement.dto.product.ProductRequestDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductResponseDto;
 import com.evervc.dev.inventorymanagement.entity.Product;
 
 public class ProductMapper {
 
-    public static Product toEntity(ProductRequestDto dto) {
+    public static Product toEntity(ProductCreateDto dto) {
         return Product.builder()
                 .name(dto.name())
                 .sku(dto.sku())

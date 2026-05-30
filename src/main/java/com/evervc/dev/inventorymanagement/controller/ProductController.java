@@ -1,7 +1,7 @@
 package com.evervc.dev.inventorymanagement.controller;
 
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
-import com.evervc.dev.inventorymanagement.dto.product.ProductRequestDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
 import com.evervc.dev.inventorymanagement.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<BaseResponseDto> addProduct(
-            @Valid @RequestBody ProductRequestDto productDto) {
+            @Valid @RequestBody ProductCreateDto productDto) {
         return new ResponseEntity<>(productService.create(productDto), HttpStatus.CREATED);
     }
 

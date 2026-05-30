@@ -7,7 +7,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import java.math.BigDecimal;
 
-public record ProductRequestDto(
+public record ProductCreateDto(
         @NotBlank(message = "El campo de nombre es obligatorio.")
         String name,
 
