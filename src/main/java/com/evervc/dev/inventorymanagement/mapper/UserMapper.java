@@ -11,7 +11,7 @@ public class UserMapper {
                 .firstName(dto.firstName())
                 .lastName(dto.lastName())
                 .address(dto.address())
-                .birthday(dto.birthDate())
+                .birthDate(dto.birthDate())
                 .email(dto.email())
                 .password(dto.password())
                 .enabled(true)
@@ -24,7 +24,7 @@ public class UserMapper {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getAddress(),
-                user.getBirthday(),
+                user.getBirthDate(),
                 user.getEmail()
         );
     }
