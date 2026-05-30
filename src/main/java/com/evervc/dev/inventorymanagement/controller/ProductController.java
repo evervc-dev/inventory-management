@@ -25,24 +25,19 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<BaseResponseDto> getAllProducts(
+            @RequestParam(required = false) Long category_id,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
+        if (category_id != null) {
+            return new ResponseEntity<>(productService.findAllByCategoryId(category_id, PageRequest.of(page, size)), HttpStatus.OK);
+        }
         return new ResponseEntity<>(productService.findAll(PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<BaseResponseDto> getProductById(@PathVariable long id) {
         return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<BaseResponseDto> getProductsByCategory(
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam Long category
-    ) {
-        return new ResponseEntity<>(productService.findAllByCategoryId(category, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
