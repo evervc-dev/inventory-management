@@ -3,6 +3,7 @@ package com.evervc.dev.inventorymanagement.service;
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.FullProductResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductUpdateDto;
 import com.evervc.dev.inventorymanagement.entity.Category;
 import com.evervc.dev.inventorymanagement.entity.Product;
 import com.evervc.dev.inventorymanagement.exception.BusinessRuleException;
@@ -46,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional(readOnly = true)
     @Override
-    public BaseResponseDto findAllByCategoryId(long categoryId, Pageable pageable) {
+    public BaseResponseDto findAllByCategory(Long categoryId, Pageable pageable) {
         Category category = getCategory(categoryId);
 
         Page<Product> products = productRepository.findAllByCategoryAndActiveTrue(category, pageable);
@@ -63,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional(readOnly = true)
     @Override
-    public BaseResponseDto findById(long id) {
+    public BaseResponseDto findById(Long id) {
         Product product = getProduct(id);
 
         return new BaseResponseDto(
@@ -85,31 +86,55 @@ public class ProductServiceImpl implements ProductService {
         Product product = ProductMapper.toEntity(productDto);
         product.setCategory(category);
 
-        Product savedProduct = productRepository.save(product);
+        Product productCreated = productRepository.save(product);
 
         return new BaseResponseDto(
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                ProductMapper.toFullDto(savedProduct)
+                ProductMapper.toFullDto(productCreated)
         );
     }
 
     @Transactional
     @Override
-    public void remove(long id) {
+    public BaseResponseDto replace(ProductUpdateDto productDto, Long id) {
+        Category category = getCategory(productDto.categoryId());
+
+        Product product = getProduct(id);
+
+        product.setName(productDto.name());
+        product.setDescription(productDto.description());
+        product.setPrice(productDto.price());
+        product.setStock(productDto.stock());
+        product.setActive(productDto.active());
+        product.setCategory(category);
+
+        Product productUpdated = productRepository.save(product);
+
+        return new BaseResponseDto(
+                LocalDateTime.now(),
+                HttpServletResponse.SC_OK,
+                httpServletRequest.getRequestURI(),
+                ProductMapper.toFullDto(productUpdated)
+        );
+    }
+
+    @Transactional
+    @Override
+    public void remove(Long id) {
         Product product = getProduct(id);
         product.setActive(false);
         productRepository.save(product);
     }
 
-    private Category getCategory(long id) {
+    private Category getCategory(Long id) {
         return categoryRepository.findByIdAndActiveTrue(id).orElseThrow(
                 () -> new ResourceNotFoundException("La categoria con ID [" + id + "] no existe.")
         );
     }
 
-    private Product getProduct(long id) {
+    private Product getProduct(Long id) {
         return productRepository.findByIdAndActiveTrue(id).orElseThrow(
                 () -> new ResourceNotFoundException("El producto con ID [" + id + "] no existe.")
         );

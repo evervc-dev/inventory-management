@@ -2,6 +2,7 @@ package com.evervc.dev.inventorymanagement.controller;
 
 import com.evervc.dev.inventorymanagement.dto.BaseResponseDto;
 import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductUpdateDto;
 import com.evervc.dev.inventorymanagement.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,12 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<BaseResponseDto> getProducts(
-            @RequestParam(required = false) Long category_id,
+            @RequestParam(required = false) Long categoryId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        if (category_id != null) {
-            return new ResponseEntity<>(productService.findAllByCategoryId(category_id, PageRequest.of(page, size)), HttpStatus.OK);
+        if (categoryId != null) {
+            return new ResponseEntity<>(productService.findAllByCategory(categoryId, PageRequest.of(page, size)), HttpStatus.OK);
         }
         return new ResponseEntity<>(productService.findAll(PageRequest.of(page, size)), HttpStatus.OK);
     }
@@ -38,6 +39,15 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<BaseResponseDto> getProductById(@PathVariable long id) {
         return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BaseResponseDto> replaceProduct(
+            @PathVariable Long id,
+            @Valid @RequestBody ProductUpdateDto productDto
+            ) {
+        return new ResponseEntity<>(productService.replace(productDto, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
