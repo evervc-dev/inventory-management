@@ -23,9 +23,6 @@ public record ProductUpdateDto(
         @PositiveOrZero(message = "El stock no puede ser negativo.")
         Integer stock,
 
-        @NotNull(message = "El estado es obligatorio.")
-        Boolean active,
-
         @NotNull(message = "El ID de la categoría es obligatorio.")
         @Positive(message = "No se permiten valores negativos.")
         Long categoryId
