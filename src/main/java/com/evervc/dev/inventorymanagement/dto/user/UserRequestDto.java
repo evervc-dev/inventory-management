@@ -27,5 +27,4 @@ public record UserRequestDto(
         String password,
 
         Boolean isAdmin
-) {
-}
+) {}

@@ -1,6 +1,9 @@
 package com.evervc.dev.inventorymanagement.dto.user;
 
+import com.evervc.dev.inventorymanagement.dto.role.RoleResponseDto;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public record UserResponseDto(
         Long id,
@@ -8,5 +11,6 @@ public record UserResponseDto(
         String lastName,
         String address,
         LocalDate birthDate,
-        String email
+        String email,
+        List<RoleResponseDto> roles
 ) {}

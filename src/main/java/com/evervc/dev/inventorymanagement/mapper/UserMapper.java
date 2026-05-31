@@ -1,8 +1,11 @@
 package com.evervc.dev.inventorymanagement.mapper;
 
+import com.evervc.dev.inventorymanagement.dto.role.RoleResponseDto;
 import com.evervc.dev.inventorymanagement.dto.user.UserRequestDto;
 import com.evervc.dev.inventorymanagement.dto.user.UserResponseDto;
 import com.evervc.dev.inventorymanagement.entity.User;
+
+import java.util.List;
 
 public class UserMapper {
 
@@ -19,13 +22,15 @@ public class UserMapper {
     }
 
     public static UserResponseDto toDto(User user) {
+        List<RoleResponseDto> roles = user.getRoles().stream().map(RoleMapper::toDto).toList();
         return new UserResponseDto(
                 user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getAddress(),
                 user.getBirthDate(),
-                user.getEmail()
+                user.getEmail(),
+                roles
         );
     }
 }
