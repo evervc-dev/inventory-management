@@ -45,7 +45,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Transactional
     public BaseResponseDto register(UserRequestDto userDto) {
         if (userRepository.existsByEmail(userDto.email()))
-            throw new BusinessRuleException("El correo " + userDto.email() + " ya esta registrado.");
+            throw new BusinessRuleException("Ya existe un usuario registrado con ese email");
 
         User user = UserMapper.toEntity(userDto);
         user.setPassword(passwordEncoder.encode(userDto.password()));
@@ -64,7 +64,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String refreshToken = jwtUtils.generateRefreshToken(userSaved);
 
         AuthResponseDto body = new AuthResponseDto(
-                "Usuario " + userSaved.getFirstName() + " registrado con exito.",
+                "Registro creado correctamente",
                 token,
                 refreshToken
         );
@@ -90,7 +90,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String refreshToken = jwtUtils.generateRefreshToken(user);
 
         AuthResponseDto body = new AuthResponseDto(
-                "Login exitoso, bienvenido " + user.getFirstName(),
+                "¡Bienvenido de nuevo, " + user.getFirstName() + " " + user.getLastName() + "!",
                 token,
                 refreshToken
         );
