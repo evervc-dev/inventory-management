@@ -24,7 +24,7 @@ public class MovementMapper {
                 movement.getId(),
                 movement.getDate(),
                 products,
-                UserMapper.toDto(movement.getUser()),
+                UserMapperOld.toDto(movement.getUser()),
                 movement.getType()
         );
     }
