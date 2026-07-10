@@ -20,13 +20,15 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class UserController {
 
+    private final UserMapper userMapper;
+
     @GetMapping("/me")
     public ResponseEntity<BaseResponseDto> getUserAuthenticated(@AuthenticationPrincipal User user, HttpServletRequest httpServletRequest) {
         BaseResponseDto response = new BaseResponseDto(
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                UserMapper.toDto(user)
+                userMapper.toResponseDto(user)
         );
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

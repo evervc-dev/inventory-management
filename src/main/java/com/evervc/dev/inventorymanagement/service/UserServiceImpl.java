@@ -22,13 +22,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final HttpServletRequest httpServletRequest;
+    private final UserMapper userMapper;
 
     @Transactional(readOnly = true)
     @Override
     public BaseResponseDto findAll(Pageable pageable) {
         Page<User> users = userRepository.findByEnabledTrue(pageable);
 
-        Page<UserResponseDto> userPage = users.map(UserMapper::toDto);
+        Page<UserResponseDto> userPage = users.map(userMapper::toResponseDto);
 
         return new BaseResponseDto(
                 LocalDateTime.now(),

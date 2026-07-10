@@ -40,6 +40,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final RoleRepository roleRepository;
     private final HttpServletRequest httpServletRequest;
+    private final UserMapper userMapper;
 
     @Override
     @Transactional
@@ -47,7 +48,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (userRepository.existsByEmail(userDto.email()))
             throw new BusinessRuleException("Ya existe un usuario registrado con ese email");
 
-        User user = UserMapper.toEntity(userDto);
+        User user = userMapper.toEntityFromCreate(userDto);
         user.setPassword(passwordEncoder.encode(userDto.password()));
 
         List<Role> roles = new ArrayList<>();
