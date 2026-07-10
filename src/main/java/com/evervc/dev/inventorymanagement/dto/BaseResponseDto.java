@@ -6,5 +6,5 @@ public record BaseResponseDto(
         LocalDateTime timestamp,
         int status,
         String path,
-        Object data
+        Object body
 ) {}
