@@ -1,36 +1,19 @@
 package com.evervc.dev.inventorymanagement.mapper;
 
-import com.evervc.dev.inventorymanagement.dto.role.RoleResponseDto;
+import com.evervc.dev.inventorymanagement.config.GlobalMapperConfiguration;
 import com.evervc.dev.inventorymanagement.dto.user.UserRequestDto;
 import com.evervc.dev.inventorymanagement.dto.user.UserResponseDto;
 import com.evervc.dev.inventorymanagement.entity.User;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.util.List;
+@Mapper(config = GlobalMapperConfiguration.class, uses = { RoleMapper.class })
+public interface UserMapper {
 
-public class UserMapper {
+    UserResponseDto toResponseDto(User user);
 
-    public static User toEntity(UserRequestDto dto) {
-        return User.builder()
-                .firstName(dto.firstName())
-                .lastName(dto.lastName())
-                .address(dto.address())
-                .birthDate(dto.birthDate())
-                .email(dto.email())
-                .password(dto.password())
-                .enabled(true)
-                .build();
-    }
-
-    public static UserResponseDto toDto(User user) {
-        List<RoleResponseDto> roles = user.getRoles().stream().map(RoleMapper::toDto).toList();
-        return new UserResponseDto(
-                user.getId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getAddress(),
-                user.getBirthDate(),
-                user.getEmail(),
-                roles
-        );
-    }
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "enabled", constant = "true")
+    User toEntityFromCreate(UserRequestDto dto);
 }

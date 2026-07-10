@@ -1,21 +1,24 @@
 package com.evervc.dev.inventorymanagement.mapper;
 
+import com.evervc.dev.inventorymanagement.config.GlobalMapperConfiguration;
 import com.evervc.dev.inventorymanagement.dto.role.RoleRequestDto;
 import com.evervc.dev.inventorymanagement.dto.role.RoleResponseDto;
 import com.evervc.dev.inventorymanagement.entity.Role;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-public class RoleMapper {
+import java.util.List;
 
-    public static Role toEntity(RoleRequestDto dto) {
-        return Role.builder()
-                .name(dto.name())
-                .build();
-    }
+@Mapper(config = GlobalMapperConfiguration.class)
+public interface RoleMapper {
+    // Para respuesta del servidor en DTO
+    RoleResponseDto toResponseDto(Role role);
 
-    public static RoleResponseDto toDto(Role role) {
-        return new RoleResponseDto(
-                role.getId(),
-                role.getName()
-        );
-    }
+    // Para convertir cada rol de usuario a DTO
+    List<RoleResponseDto> toRolesDto(List<Role> roles);
+
+    // Para solicitud de creación del rol
+    @Mapping(target = "id", ignore = true)
+    Role toCreateEntity(RoleRequestDto dto);
+
 }
