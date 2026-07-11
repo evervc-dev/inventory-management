@@ -2,6 +2,7 @@ package com.evervc.dev.inventorymanagement.dto.user;
 
 import com.evervc.dev.inventorymanagement.validation.EmailRegex;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -24,6 +25,11 @@ public record UserRequestDto(
         String email,
 
         @NotBlank(message = "El campo de contraseña es obligatorio.")
+        @Size(min = 8, max = 128, message = "La contraseña debe tener al menos 8 caracteres")
+        @Pattern(
+                regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
+                message = "La contraseña debe contener almenos una mayúscula, ouna minúscula, un dígito, y un caracter especial"
+        )
         String password,
 
         Boolean isAdmin
