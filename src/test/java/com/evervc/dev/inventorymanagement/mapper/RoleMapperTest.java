@@ -124,4 +124,39 @@ public class RoleMapperTest {
         // Assert
         Assertions.assertEquals(expectedDtos, responseDtos);
     }
+
+    @Test
+    @DisplayName("Try to map a null list of roles to a null list of roles response DTO")
+    void shouldReturnNullWhenMappingNullRoles() {
+        // Arrange Act & Assert
+        Assertions.assertNull(roleMapper.toRolesDto(null));
+    }
+
+    @Test
+    @DisplayName("Try to map a list of null roles to a list of null roles response DTO")
+    void shouldReturnNullWhenMappingNullRolesInList() {
+        // Arrange
+        List<Role> roles = Arrays.asList(null, null);
+        List<RoleResponseDto> expectedDtos = Arrays.asList(null, null);
+
+        // Act
+        List<RoleResponseDto> responseDtos = roleMapper.toRolesDto(roles);
+
+        // Assert
+        Assertions.assertEquals(expectedDtos, responseDtos);
+    }
+
+    @Test
+    @DisplayName("Try to map a list of roles with null values to a list of roles response DTO")
+    void shouldReturnNullWhenMappingRolesWithNullValues() {
+        // Arrange
+        List<Role> roles = Arrays.asList(new Role(1L, "ADMIN"), null);
+        List<RoleResponseDto> expectedDtos = Arrays.asList(new RoleResponseDto(1L, "ADMIN"), null);
+
+        // Act
+        List<RoleResponseDto> responseDtos = roleMapper.toRolesDto(roles);
+
+        // Assert
+        Assertions.assertEquals(expectedDtos, responseDtos);
+    }
 }
