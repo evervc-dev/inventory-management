@@ -41,7 +41,7 @@ public class RoleMapperTest {
 
     @Test
     @DisplayName("Try to mapping a null role from Entity to DTO")
-    void shouldReturnNullWhenMappingNullgRole() {
+    void shouldReturnNullWhenMappingNullRole() {
         // Arrange Act & Assert
         Assertions.assertNull(roleMapper.toResponseDto(null));
     }
@@ -82,6 +82,27 @@ public class RoleMapperTest {
 
         // Act
         Role role = roleMapper.toCreateEntity(new RoleRequestDto("ADMIN"));
+
+        // Assert
+        Assertions.assertEquals(expected, role);
+    }
+
+    @Test
+    @DisplayName("Try to mapping a null role from DTO to Entity")
+    void shouldReturnNullWhenMappingNullDto() {
+        // Arrange Act & Assert
+        Assertions.assertNull(roleMapper.toCreateEntity(null));
+    }
+
+    @Test
+    @DisplayName("Try to mapping a wrong role from DTO to Entity")
+    void shouldThrowExceptionWhenMappingWrongDto() {
+        // Arrange
+        RoleRequestDto wrongRole = new RoleRequestDto(null);
+        Role expected = new Role(null, null);
+
+        // Act
+        Role role = roleMapper.toCreateEntity(wrongRole);
 
         // Assert
         Assertions.assertEquals(expected, role);
