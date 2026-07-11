@@ -28,7 +28,7 @@ public record UserRequestDto(
         @Size(min = 8, max = 128, message = "La contraseña debe tener al menos 8 caracteres")
         @Pattern(
                 regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
-                message = "La contraseña debe contener almenos una mayúscula, ouna minúscula, un dígito, y un caracter especial"
+                message = "La contraseña debe contener al menos una mayúscula, una minúscula, un dígito, y un carácter especial"
         )
         String password,
 
