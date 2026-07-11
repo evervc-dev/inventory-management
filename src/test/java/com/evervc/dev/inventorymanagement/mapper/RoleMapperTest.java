@@ -35,4 +35,17 @@ public class RoleMapperTest {
         // Assert (Afirmar con AsserJ)
         Assertions.assertEquals(result, responseDto);
     }
+
+    @Test
+    @DisplayName("Mapping role from DTO to Entity")
+    void shouldMapDtoToEntity() {
+        // Arrange
+        Role result = new Role(null, "ADMIN");
+
+        // Act
+        Role role = roleMapper.toCreateEntity(new RoleRequestDto("ADMIN"));
+
+        // Assert
+        Assertions.assertEquals(result, role);
+    }
 }
