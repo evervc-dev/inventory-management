@@ -35,7 +35,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="961" height="283" alt="unit-test-1" src="https://github.com/user-attachments/assets/e0685ea3-4c23-4b0e-b192-eda492fa6af8" />
 
 ---
 
@@ -68,7 +68,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="962" height="276" alt="unit-test-2" src="https://github.com/user-attachments/assets/bfef5aa8-f4bf-4454-b93e-b55be6d4d7c9" />
 
 ---
 
@@ -103,7 +103,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="963" height="276" alt="unit-test-3" src="https://github.com/user-attachments/assets/9d4546e7-9702-4e56-8c97-74a086ab2416" />
 
 ---
 
@@ -138,7 +138,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="964" height="274" alt="unit-test-4" src="https://github.com/user-attachments/assets/aa1d5070-93d4-4e50-b7a9-9067c97f3386" />
 
 ---
 
@@ -173,7 +173,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="960" height="273" alt="unit-test-5" src="https://github.com/user-attachments/assets/2ff49be7-c68e-45df-b649-197c86e42086" />
 
 ---
 
@@ -206,7 +206,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="963" height="279" alt="unit-test-6" src="https://github.com/user-attachments/assets/95f9438a-fa3c-4afe-9833-045b43491421" />
 
 ---
 
@@ -241,7 +241,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="961" height="278" alt="unit-test-7" src="https://github.com/user-attachments/assets/721884da-3a3f-4b54-add9-6668d13d2a58" />
 
 ---
 
@@ -276,7 +276,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="959" height="277" alt="unit-test-8" src="https://github.com/user-attachments/assets/51d6391f-f648-483f-832d-6bf7c50ad65c" />
 
 ---
 
@@ -309,7 +309,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="959" height="275" alt="unit-test-9" src="https://github.com/user-attachments/assets/0c9e6891-a138-4de6-8a25-13f5245ad891" />
 
 ---
 
@@ -344,7 +344,7 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="957" height="276" alt="unit-test-10" src="https://github.com/user-attachments/assets/a77fd7fb-1a1b-4f85-aabe-1029f62b0938" />
 
 ---
 
@@ -378,4 +378,4 @@ Este documento detalla los casos de prueba ejecutados para la clase `RoleMapper`
 **Estado:** ![Estado](https://img.shields.io/badge/PASS-Green.svg)
 
 **Evidencia:**
-[Insertar captura de pantalla o resultado de la prueba aquí]
+<img width="963" height="273" alt="unit-test-11" src="https://github.com/user-attachments/assets/d2164893-fa94-4ce6-8eba-3e79e630a683" />
