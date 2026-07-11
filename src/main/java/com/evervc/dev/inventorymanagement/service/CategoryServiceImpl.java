@@ -69,6 +69,7 @@ public class CategoryServiceImpl implements CategoryService {
         );
     }
 
+    @Transactional(readOnly = true)
     @Override
     public BaseResponseDto findByIdWithProducts(Long id) {
         /*Category category = categoryRepository.findByIdAndActiveTrueWithProducts(id).orElseThrow(
@@ -84,6 +85,7 @@ public class CategoryServiceImpl implements CategoryService {
         );
     }
 
+    @Transactional(readOnly = true)
     @Override
     public BaseResponseDto findByName(String name) {
         Category category = categoryRepository.findByNameAndActiveTrue(name).orElseThrow(
@@ -98,6 +100,7 @@ public class CategoryServiceImpl implements CategoryService {
         );
     }
 
+    @Transactional
     @Override
     public BaseResponseDto create(CategoryRequestDto categoryDto) {
         if (categoryRepository.existsByName(categoryDto.name()))
@@ -115,6 +118,7 @@ public class CategoryServiceImpl implements CategoryService {
         );
     }
 
+    @Transactional
     @Override
     public void remove(Long id) {
         Category category = getCategoryById(id);

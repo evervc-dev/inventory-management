@@ -108,6 +108,7 @@ public class StockMovementServiceImpl implements StockMovementService {
         );
     }
 
+    @Transactional
     @Override
     public BaseResponseDto create(MovementRequestDto movementDto) {
         User user = getUserById(movementDto.userId());

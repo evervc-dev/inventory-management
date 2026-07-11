@@ -42,8 +42,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final HttpServletRequest httpServletRequest;
     private final UserMapper userMapper;
 
-    @Override
     @Transactional
+    @Override
     public BaseResponseDto register(UserRequestDto userDto) {
         if (userRepository.existsByEmail(userDto.email()))
             throw new BusinessRuleException("Ya existe un usuario registrado con ese email");
@@ -78,8 +78,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         );
     }
 
-    @Override
     @Transactional(readOnly = true)
+    @Override
     public BaseResponseDto login(LoginRequestDto requestDto) {
         Authentication manager = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(requestDto.email(), requestDto.password())
@@ -104,6 +104,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         );
     }
 
+    @Transactional(readOnly = true)
     @Override
     public BaseResponseDto refreshToken(String refreshToken) {
         String email = jwtUtils.getEmailFromToken(refreshToken);

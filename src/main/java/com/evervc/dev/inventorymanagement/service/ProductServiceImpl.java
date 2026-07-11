@@ -120,6 +120,7 @@ public class ProductServiceImpl implements ProductService {
         );
     }
 
+    @Transactional
     @Override
     public BaseResponseDto update(ProductPatchDto productDto, Long id) {
         Product product = getProduct(id);
