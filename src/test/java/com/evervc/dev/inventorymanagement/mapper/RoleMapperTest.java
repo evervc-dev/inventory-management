@@ -27,7 +27,7 @@ public class RoleMapperTest {
     void shouldMapEntityToDto() {
 
         // Arrange (Organizar)
-        RoleResponseDto result = new RoleResponseDto(
+        RoleResponseDto expected = new RoleResponseDto(
                 1L,
                 "ADMIN"
         );
@@ -36,20 +36,20 @@ public class RoleMapperTest {
         RoleResponseDto responseDto = roleMapper.toResponseDto(new Role(1L, "ADMIN"));
 
         // Assert (Afirmar con AsserJ)
-        Assertions.assertEquals(result, responseDto);
+        Assertions.assertEquals(expected, responseDto);
     }
 
     @Test
     @DisplayName("Mapping role from DTO to Entity")
     void shouldMapDtoToEntity() {
         // Arrange
-        Role result = new Role(null, "ADMIN");
+        Role expected = new Role(null, "ADMIN");
 
         // Act
         Role role = roleMapper.toCreateEntity(new RoleRequestDto("ADMIN"));
 
         // Assert
-        Assertions.assertEquals(result, role);
+        Assertions.assertEquals(expected, role);
     }
 
     @Test
@@ -67,5 +67,40 @@ public class RoleMapperTest {
 
         // Assert
         Assertions.assertEquals(expectedDtos, responseDtos);
+    }
+
+    @Test
+    @DisplayName("Try to mapping a null role from Entity to DTO")
+    void shouldReturnNullWhenMappingNullgRole() {
+        // Arrange Act & Assert
+        Assertions.assertNull(roleMapper.toResponseDto(null));
+    }
+
+    @Test
+    @DisplayName("Try to mapping a wrong role without id from Entity to DTO")
+    void shouldThrowExceptionWhenMappingWrongRoleWithoutId() {
+        // Arrange
+        Role wrongRole = new Role(null, "GUEST");
+        RoleResponseDto expected = new RoleResponseDto(null, "GUEST");
+
+        // Act
+        RoleResponseDto responseDto = roleMapper.toResponseDto(wrongRole);
+
+        // Assert
+        Assertions.assertEquals(expected, responseDto);
+    }
+
+    @Test
+    @DisplayName("Try to mapping a wrong role without name from Entity to DTO")
+    void shouldThrowExceptionWhenMappingWrongRoleWithoutName() {
+        // Arrange
+        Role wrongRole = new Role(1L, null);
+        RoleResponseDto expected = new RoleResponseDto(1L, null);
+
+        // Act
+        RoleResponseDto responseDto = roleMapper.toResponseDto(wrongRole);
+
+        // Assert
+        Assertions.assertEquals(expected, responseDto);
     }
 }
