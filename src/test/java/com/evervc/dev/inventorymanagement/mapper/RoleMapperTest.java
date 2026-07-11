@@ -9,6 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class RoleMapperTest {
 
     private RoleMapper roleMapper;
@@ -47,5 +50,22 @@ public class RoleMapperTest {
 
         // Assert
         Assertions.assertEquals(result, role);
+    }
+
+    @Test
+    @DisplayName("Mapping a list of roles to roles response DTO")
+    void shouldMapRolesToListOfRolesDto() {
+        // Arrange
+        List<Role> roles = Arrays.asList(new Role(1L, "ADMIN"), new Role(2L, "USER"));
+        List<RoleResponseDto> expectedDtos = Arrays.asList(
+                new RoleResponseDto(1L, "ADMIN"),
+                new RoleResponseDto(2L, "USER")
+        );
+
+        // Act
+        List<RoleResponseDto> responseDtos = roleMapper.toRolesDto(roles);
+
+        // Assert
+        Assertions.assertEquals(expectedDtos, responseDtos);
     }
 }
