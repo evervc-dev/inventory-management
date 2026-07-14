@@ -23,8 +23,9 @@ public class Category extends Auditable {
 
     private String description;
 
+    @Builder.Default
     @Column(nullable = false)
-    private Boolean active;
+    private Boolean active = true;
 
     @OneToMany(mappedBy = "category",  fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Product> products;

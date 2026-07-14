@@ -41,8 +41,9 @@ public class User extends Auditable implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Builder.Default
     @Column(nullable = false)
-    private Boolean enabled;
+    private Boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

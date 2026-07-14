@@ -34,8 +34,9 @@ public class Product extends Auditable {
     @Column(nullable = false)
     private Integer stock;
 
+    @Builder.Default
     @Column(nullable = false)
-    private Boolean active;
+    private Boolean active = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
