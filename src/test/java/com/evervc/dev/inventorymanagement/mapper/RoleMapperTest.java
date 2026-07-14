@@ -119,7 +119,7 @@ public class RoleMapperTest {
         );
 
         // Act
-        List<RoleResponseDto> responseDtos = roleMapper.toRolesDto(roles);
+        List<RoleResponseDto> responseDtos = roleMapper.toResponseDtoList(roles);
 
         // Assert
         Assertions.assertEquals(expectedDtos, responseDtos);
@@ -129,7 +129,7 @@ public class RoleMapperTest {
     @DisplayName("Try to map a null list of roles to a null list of roles response DTO")
     void shouldReturnNullWhenMappingNullRoles() {
         // Arrange Act & Assert
-        Assertions.assertNull(roleMapper.toRolesDto(null));
+        Assertions.assertNull(roleMapper.toResponseDtoList(null));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class RoleMapperTest {
         List<RoleResponseDto> expectedDtos = Arrays.asList(null, null);
 
         // Act
-        List<RoleResponseDto> responseDtos = roleMapper.toRolesDto(roles);
+        List<RoleResponseDto> responseDtos = roleMapper.toResponseDtoList(roles);
 
         // Assert
         Assertions.assertEquals(expectedDtos, responseDtos);
@@ -154,7 +154,7 @@ public class RoleMapperTest {
         List<RoleResponseDto> expectedDtos = Arrays.asList(new RoleResponseDto(1L, "ADMIN"), null);
 
         // Act
-        List<RoleResponseDto> responseDtos = roleMapper.toRolesDto(roles);
+        List<RoleResponseDto> responseDtos = roleMapper.toResponseDtoList(roles);
 
         // Assert
         Assertions.assertEquals(expectedDtos, responseDtos);

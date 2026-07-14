@@ -15,7 +15,7 @@ public interface RoleMapper {
     RoleResponseDto toResponseDto(Role role);
 
     // Para convertir cada rol de usuario a DTO
-    List<RoleResponseDto> toRolesDto(List<Role> roles);
+    List<RoleResponseDto> toResponseDtoList(List<Role> roles);
 
     // Para solicitud de creación del rol
     @Mapping(target = "id", ignore = true)
