@@ -1,0 +1,43 @@
+package com.evervc.dev.inventorymanagement.mapper;
+
+import com.evervc.dev.inventorymanagement.dto.product.FullProductResponseDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductCreateDto;
+import com.evervc.dev.inventorymanagement.dto.product.ProductResponseDto;
+import com.evervc.dev.inventorymanagement.entity.Product;
+
+public class ProductMapperOld {
+
+    public static Product toEntity(ProductCreateDto dto) {
+        return Product.builder()
+                .name(dto.name())
+                .sku(dto.sku())
+                .description(dto.description())
+                .price(dto.price())
+                .stock(dto.stock())
+                .active(true)
+                .build();
+    }
+
+    public static ProductResponseDto toSimpleDto(Product product) {
+        return new ProductResponseDto(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getStock(),
+                product.getActive()
+        );
+    }
+
+    public static FullProductResponseDto toFullDto(Product product) {
+        return new FullProductResponseDto(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getStock(),
+                product.getActive(),
+                CategoryMapperOld.toSimpleDto(product.getCategory())
+        );
+    }
+}

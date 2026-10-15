@@ -9,7 +9,7 @@ import com.evervc.dev.inventorymanagement.entity.Category;
 import com.evervc.dev.inventorymanagement.entity.Product;
 import com.evervc.dev.inventorymanagement.exception.BusinessRuleException;
 import com.evervc.dev.inventorymanagement.exception.ResourceNotFoundException;
-import com.evervc.dev.inventorymanagement.mapper.ProductMapper;
+import com.evervc.dev.inventorymanagement.mapper.ProductMapperOld;
 import com.evervc.dev.inventorymanagement.repository.CategoryRepository;
 import com.evervc.dev.inventorymanagement.repository.ProductRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         // Retorna solo los productos con Stock mayor a 0 (es decir, de 1 en adelante)
         Page<Product> products = productRepository.findAllByStockAfterAndActiveTrue(0, pageable);
 
-        Page<FullProductResponseDto> productsPage = products.map(ProductMapper::toFullDto);
+        Page<FullProductResponseDto> productsPage = products.map(ProductMapperOld::toFullDto);
 
         return new BaseResponseDto(
                 LocalDateTime.now(),
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
         Page<Product> products = productRepository.findAllByCategoryAndActiveTrue(category, pageable);
 
-        Page<FullProductResponseDto> productsPage = products.map(ProductMapper::toFullDto);
+        Page<FullProductResponseDto> productsPage = products.map(ProductMapperOld::toFullDto);
 
         return new BaseResponseDto(
                 LocalDateTime.now(),
@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                ProductMapper.toFullDto(product)
+                ProductMapperOld.toFullDto(product)
         );
     }
 
@@ -84,7 +84,7 @@ public class ProductServiceImpl implements ProductService {
         if (productRepository.existsBySku(productDto.sku()))
             throw  new BusinessRuleException("Ya existe un producto con el SKU [" + productDto.sku() + "].");
 
-        Product product = ProductMapper.toEntity(productDto);
+        Product product = ProductMapperOld.toEntity(productDto);
         product.setCategory(category);
 
         Product productCreated = productRepository.save(product);
@@ -93,7 +93,7 @@ public class ProductServiceImpl implements ProductService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                ProductMapper.toFullDto(productCreated)
+                ProductMapperOld.toFullDto(productCreated)
         );
     }
 
@@ -116,7 +116,7 @@ public class ProductServiceImpl implements ProductService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                ProductMapper.toFullDto(productUpdated)
+                ProductMapperOld.toFullDto(productUpdated)
         );
     }
 
@@ -158,7 +158,7 @@ public class ProductServiceImpl implements ProductService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                ProductMapper.toFullDto(productUpdated)
+                ProductMapperOld.toFullDto(productUpdated)
         );
     }
 
