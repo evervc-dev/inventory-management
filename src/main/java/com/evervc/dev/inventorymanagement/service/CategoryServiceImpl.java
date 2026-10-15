@@ -7,7 +7,7 @@ import com.evervc.dev.inventorymanagement.dto.category.FullCategoryResponseDto;
 import com.evervc.dev.inventorymanagement.entity.Category;
 import com.evervc.dev.inventorymanagement.exception.BusinessRuleException;
 import com.evervc.dev.inventorymanagement.exception.ResourceNotFoundException;
-import com.evervc.dev.inventorymanagement.mapper.CategoryMapper;
+import com.evervc.dev.inventorymanagement.mapper.CategoryMapperOld;
 import com.evervc.dev.inventorymanagement.repository.CategoryRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public BaseResponseDto findAll(Pageable pageable) {
         Page<Category> categories = categoryRepository.findAllByActiveTrue(pageable);
-        Page<CategoryResponseDto> categoryPage = categories.map(CategoryMapper::toSimpleDto);
+        Page<CategoryResponseDto> categoryPage = categories.map(CategoryMapperOld::toSimpleDto);
 
         return new BaseResponseDto(
                 LocalDateTime.now(),
@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
         // La siguiente línea probablemente de un error por el proxy de Spring Boot, si es el caso
         // únicamete se debe hacer el llamado a: categoryRepository.findAllByActiveTrueWithProducts(pageable);
         Page<Category> categories = categoryRepository.findAllByActiveTrue(pageable);
-        Page<FullCategoryResponseDto> categoryPage = categories.map(CategoryMapper::toFullDto);
+        Page<FullCategoryResponseDto> categoryPage = categories.map(CategoryMapperOld::toFullDto);
 
         return new BaseResponseDto(
                 LocalDateTime.now(),
@@ -65,7 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                CategoryMapper.toSimpleDto(category)
+                CategoryMapperOld.toSimpleDto(category)
         );
     }
 
@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements CategoryService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                CategoryMapper.toFullDto(category)
+                CategoryMapperOld.toFullDto(category)
         );
     }
 
@@ -96,7 +96,7 @@ public class CategoryServiceImpl implements CategoryService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                CategoryMapper.toFullDto(category)
+                CategoryMapperOld.toFullDto(category)
         );
     }
 
@@ -106,7 +106,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (categoryRepository.existsByName(categoryDto.name()))
             throw new BusinessRuleException("Ya existe una categoría con el nombre de [" + categoryDto.name() + "].");
 
-        Category category = CategoryMapper.toEntity(categoryDto);
+        Category category = CategoryMapperOld.toEntity(categoryDto);
 
         Category savedCategory = categoryRepository.save(category);
 
@@ -114,7 +114,7 @@ public class CategoryServiceImpl implements CategoryService {
                 LocalDateTime.now(),
                 HttpServletResponse.SC_OK,
                 httpServletRequest.getRequestURI(),
-                CategoryMapper.toSimpleDto(savedCategory)
+                CategoryMapperOld.toSimpleDto(savedCategory)
         );
     }
 
