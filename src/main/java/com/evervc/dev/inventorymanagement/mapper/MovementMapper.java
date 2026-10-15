@@ -19,7 +19,7 @@ public class MovementMapper {
 
     public static MovementResponseDto toDto(StockMovement movement) {
         List<FullProductResponseDto> products = movement.getProducts()
-                .stream().map(ProductMapper::toFullDto).toList();
+                .stream().map(ProductMapperOld::toFullDto).toList();
         return new MovementResponseDto(
                 movement.getId(),
                 movement.getDate(),
